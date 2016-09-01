@@ -1,0 +1,29 @@
+<h2>Welcome, {{newUser.name}} &nbsp;&nbsp;&nbsp;<button ng-click="logout()">Sign Out</button></h2>
+
+
+<form ng-submit="addWish()">
+<input type="text" ng-model="createWish.title" placeholder="title">
+<input type="text" ng-model="createWish.description" placeholder="description">
+<select ng-model="createWish.tagged">
+	<option ng-repeat="user in users track by $index">{{user.name}}</option>
+</select >
+<input type="submit" value="Add to List">
+</form>
+
+<div ng-if="errors">
+    <p ng-repeat="message in messages">{{message}}</p>
+</div>
+
+
+
+<h3>Before I die want to:</h3>
+
+<form ng-repeat="wish in wishes">
+  <input type="checkbox" value="">{{wish._user}} {{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}<br>
+</form>
+
+
+<h3>List of other users(Click to view profile)</h3>
+<div ng-repeat="user in users">
+	<p><a href="#/profile/{{user._id}}">{{user.name}}</a></p>
+</div>

@@ -1,0 +1,13 @@
+<div>
+    <h2>Bucket Lists</h2>
+
+    <form ng-submit="createUser()"> 
+    Name:<input type="text" ng-model="newUser.name">
+         <input type="submit" value="Enter">
+    </form>
+
+</div>
+
+<div ng-if="errors">
+    <p ng-repeat="message in messages">{{message}}</p>
+</div>
