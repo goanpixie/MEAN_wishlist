@@ -1,33 +1,33 @@
-app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookies',function($scope, $location, userFactory, $cookies) {
-$scope.newUser = {};
-$scope.wishes = {}
-$scope.errors = false;
-$scope.messages = [];
-$scope.createWish = {};
-$scope.wish=[]
+app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookies', function($scope, $location, userFactory, $cookies) {
+    $scope.newUser = {};
+    $scope.wishes = [];
+    $scope.selected = [];
+    $scope.errors = false;
+    $scope.messages = [];
+    $scope.createWish = {};
+    $scope.wish = []
 
 
-	if($cookies.getObject('newUser')){
-		$scope.newUser = $cookies.getObject('newUser')
-	}
-	else{
-		$location.url('/')
-	}
+    if ($cookies.getObject('newUser')) {
+        $scope.newUser = $cookies.getObject('newUser')
+    } else {
+        $location.url('/')
+    }
 
 
 
-	$scope.getUser = function() {
-		userFactory.getUser(function(data) {
-	    	$scope.users = data
-		})
-	};
-	$scope.getUser();
+    $scope.getUser = function() {
+        userFactory.getUser(function(data) {
+            $scope.users = data
+        })
+    };
+    $scope.getUser();
 
 
-	$scope.addWish = function() {
+    $scope.addWish = function() {
         $scope.createWish._id = $scope.newUser._id
         userFactory.addWish($scope.createWish, function(data) {
-        	console.log(data)
+            console.log(data)
             $scope.messages = []
             if (data.errors) {
                 $scope.errors = true;
@@ -36,31 +36,38 @@ $scope.wish=[]
                     $scope.messages.push(data.errors[err].message)
                 }
             }
-        
+
         })
-            $scope.getWish();
+        $scope.getWish();
     }
+
+
 
 
     $scope.getWish = function() {
         userFactory.getWish(function(data) {
             $scope.wishes = data
-            console.log()
         })
     };
     $scope.getWish();
 
 
-    $scope.logout = function(){
+    $scope.toggle = function(item) {
+        var idx = $scope.selected.indexOf(item);
+        if (idx > -1) {
+            $scope.selected.splice(idx, 1);
+        } else {
+            $scope.selected.push(item);
+        }
+    }
+    $scope.getWish();
+
+
+    $scope.logout = function() {
         $cookies.remove('newUser')
         $location.url('/')
 
     }
 
 
-	}])
-
-	
-
-
-
+}])
