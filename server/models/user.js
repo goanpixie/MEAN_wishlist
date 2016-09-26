@@ -1,10 +1,10 @@
-console.log("Ia m in the model-->user.js")
+console.log("I am in the model-->user.js")
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
 
 var UserSchema = new mongoose.Schema({
-	_wish: {type: Schema.Types.ObjectId, ref: 'Wish'},
-name: {
+	 _wish: [{type: Schema.Types.ObjectId, ref: 'Wish'}],
+    name: {
     type: String,
     required: [true, "Your username is required"],
     maxlength: [20, "Your username cannot be longer than 20 characters"],

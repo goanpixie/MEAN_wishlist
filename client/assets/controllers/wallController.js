@@ -25,7 +25,8 @@ app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookie
 
 
     $scope.addWish = function() {
-        $scope.createWish._id = $scope.newUser._id
+        $scope.createWish.userid = $scope.newUser._id;
+        $scope.createWish.name = $scope.newUser.name;
         userFactory.addWish($scope.createWish, function(data) {
             console.log(data)
             $scope.messages = []
@@ -42,8 +43,6 @@ app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookie
     }
 
 
-
-
     $scope.getWish = function() {
         userFactory.getWish(function(data) {
             $scope.wishes = data
@@ -54,7 +53,7 @@ app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookie
 
     $scope.toggle = function(item) {
         var idx = $scope.selected.indexOf(item);
-        if (idx > -1) {
+            if (idx > -1) {
             $scope.selected.splice(idx, 1);
         } else {
             $scope.selected.push(item);

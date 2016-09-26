@@ -19,10 +19,10 @@
 <h3>Before I die want to:</h3>
 
 <form ng-repeat="wish in wishes">
-  <input type="checkbox"  ng-click="toggle(wish)">{{wish._user}} {{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}<br>
+  <input type="checkbox"  ng-click="toggle(wish)">{{wish._user[0].name}}  |  {{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}<br>
 </form>
 
-<h2>Selected Items</h2>
+<h2>Completed wishes:</h2>
 <ul>
 	<li ng-repeat = "selection in selected">
 		{{selection.title}}
@@ -33,5 +33,11 @@
 
 <h3>List of other users(Click to view profile)</h3>
 <div ng-repeat="user in users">
-	<p><a href="#/profile/{{user._id}}">{{user.name}}</a></p>
+	<p><a href="#/profile/{{user._id}}">{{user.name}} </a> {{user._id}}</p>
 </div>
+
+<style>
+	body{
+		background-color: #ece89c;
+	}
+</style>

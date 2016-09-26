@@ -3,8 +3,17 @@
 
 <h2>Here's the buckest list</h2>
 
-<div ng-repeat="wish in wishes track by $index">
 
+
+<h2>Completed wishes:</h2>
+<ul>
+	<li ng-repeat = "selection in selected">
+		{{selection.title}}
+	</li>
+</ul>
+
+<h2>All the wishes:</h2>
+<div ng-repeat="wish in wishes track by $index">
 <p ng-if="newUser._id == wish._user._id">{{wish._id}} {{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}</p>
 	
 

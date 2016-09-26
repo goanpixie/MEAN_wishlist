@@ -1,0 +1,11 @@
+<h2>Welcome, {{newUser.name}} &nbsp;&nbsp;&nbsp;<button ng-click="logout()">Sign Out</button></h2>
+
+
+<h2>Here's the buckest list</h2>
+
+<div ng-repeat="wish in wishes track by $index">
+
+<p ng-if="newUser._id == wish._user._id">{{wish._id}} {{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}</p>
+	
+
+</div>

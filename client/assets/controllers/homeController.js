@@ -17,12 +17,14 @@ $scope.newUser = {};
                 }
             }
             else{
-                $cookies.putObject('newUser',{name: data.name})
+                $cookies.putObject('newUser',{name: data.name, _id: data._id})
                 $location.url('/wall')
             }
 
         })
 	}
+
+
 
 
 }])

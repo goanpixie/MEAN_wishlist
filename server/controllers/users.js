@@ -41,31 +41,55 @@ this.getUser = function(req, res) {
     }
 
 this.addWish = function(req,res) {
-	console.log(req)
+	console.log(req.body)
+    var newWish = Wish({_user: req.body.userid, name: req.body.name, title: req.body.title, description: req.body.description, tagged: req.body.tagged})
+    console.log(newWish)
+    newWish.save(function(err){
+        if(err){
+            res.json(err)    
+        }else{
+            User.findOne({_id: req.body.userid, name: req.body.name}, function(err, user){
+                if(err){
+                    res.json(err)
+                }else{
+                    user._wish.push(newWish)
+                    user.save(function(err){
+                        if(err){
+                            res.json(err)
+                        }else{
+                            res.send()
+                        }
+                    })
+                }
 
-    Wish.findOne({ _user: req.body.id, title: req.body.title, id: req.body._id , description: req.body.description, tagged: req.body.tagged}, function(err, wish) {
-        if (err) {
-            res.json(err)
-        } else {
-            if (wish == null) {
-                var newWish= Wish({ _user: req.body._id, title: req.body.title, id: req.body._id , description: req.body.description, tagged: req.body.tagged })
-                newWish.save(function(newerr) {
-                    if (newerr) {
-                        res.json(newerr)
-                    } else {
-                        res.json(newWish)
-                    }
-                })
-            } else { res.json(wish) }
-            }
-        })
-    }
+            })
+        }
+    })
+}
+
+    // Wish.findOne({ _user: req.body.userid, title: req.body.title, description: req.body.description, tagged: req.body.tagged}, function(err, wish) {
+    //     if (err) {
+    //         res.json(err)
+    //     } else {
+    //         if (wish == null) {
+    //             var newWish= Wish({ _user: req.body.userid, title: req.body.title, id: req.body._id , description: req.body.description, tagged: req.body.tagged })
+    //             newWish.save(function(newerr) {
+    //                 if (newerr) {
+    //                     res.json(newerr)
+    //                 } else {
+    //                     res.json(newWish)
+    //                 }
+    //             })
+    //         } else { res.json(wish) }
+    //         }
+    //     })
+    // }
 
 
 
 
 this.getWish = function(req, res) {
-        Wish.find({}).populate('_wish').exec(function(err, wishes) {
+        Wish.find({}).populate('_user').exec(function(err, wishes) {
             if (err) {
                 res.json(err)
             } else {

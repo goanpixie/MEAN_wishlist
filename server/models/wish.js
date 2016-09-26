@@ -1,9 +1,9 @@
-console.log("Ia m in the model-->wish.js")
+console.log("I am in the model-->wish.js")
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema
 
 var WishSchema = new mongoose.Schema({
-_user: {type: Schema.Types.ObjectId, ref: 'User'},
+_user: [{type: Schema.Types.ObjectId, ref: 'User'}],
 
     
     title : {
