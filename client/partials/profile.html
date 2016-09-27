@@ -2,20 +2,21 @@
 
 
 <div ng-repeat="wish in wishes">
-<h2>Here's the buckest list for {{wish._user[0].name}} </h2>
+<h2>Here's the buckect list for {{wish._user[0].name}} </h2>
 </div>
 
-<div ng-repeat="wish in wishes">
-<input type="checkbox">{{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}
-</div>
+<h3>Pending:</h3>
+<form ng-repeat="wish in wishes" >
+<input type="checkbox" ng-if="newUser.name == wish._user[0].name" ng-click="toggle(wish)">{{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}
+</form>
 
 
-<h2>Completed wishes:</h2>
-<!-- <ul>
+<h3>Done:</h3>
+<ul>
 	<li ng-repeat = "selection in selected">
 		{{selection.title}}
 	</li>
-</ul> -->
+</ul>
 
 <style>
 	body{
