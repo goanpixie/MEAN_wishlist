@@ -15,7 +15,6 @@ app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookie
     }
 
 
-
     $scope.getUser = function() {
         userFactory.getUser(function(data) {
             $scope.users = data
@@ -29,7 +28,7 @@ app.controller('wallController', ['$scope', '$location', 'userFactory', '$cookie
         $scope.createWish.name = $scope.newUser.name;
         userFactory.addWish($scope.createWish, function(data) {
             console.log(data)
-            $scope.messages = []
+            $scope.messages = [];
             if (data.errors) {
                 $scope.errors = true;
                 for (err in data.errors) {
