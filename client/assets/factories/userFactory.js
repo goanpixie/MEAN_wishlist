@@ -32,10 +32,10 @@ app.factory('userFactory', ['$http', function($http) {
 
         }
 
-        this.getOneWish = function(id,callback){
-			console.log("I am here")
-			$http.get('/getOneWish/'+id).then(function(r_data){
-			callback(r_data.data)
+        this.getWishByUser = function(_id, callback){
+			console.log("I am in getWishByUser method" +_id)
+			$http.get('/getWishByUser/'+_id).then(function(r_data){
+			     callback(r_data.data)
 			})
 		}
 

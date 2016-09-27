@@ -99,9 +99,9 @@ this.getWish = function(req, res) {
     }
 
 
-   this.getOneWish = function(req, res) {
+   this.getWishByUser = function(req, res) {
     	console.log("I am here")
-        Wish.findOne({ _id: req.params.id }, function(err, wish) {
+        Wish.find({ _user: req.params._user}).populate('_user').exec(function(err, wish) {
             if (err) {
                 res.json(err)
             } else {

@@ -1,20 +1,25 @@
 <h2>Welcome, {{newUser.name}} &nbsp;&nbsp;&nbsp;<button ng-click="logout()">Sign Out</button></h2>
 
 
-<h2>Here's the buckest list</h2>
+<div ng-repeat="wish in wishes">
+<h2>Here's the buckest list for {{wish._user[0].name}} </h2>
+</div>
 
+<div ng-repeat="wish in wishes">
+<input type="checkbox">{{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}
+</div>
 
 
 <h2>Completed wishes:</h2>
-<ul>
+<!-- <ul>
 	<li ng-repeat = "selection in selected">
 		{{selection.title}}
 	</li>
-</ul>
+</ul> -->
 
-<h2>All the wishes:</h2>
-<div ng-repeat="wish in wishes track by $index">
-<p ng-if="newUser._id == wish._user._id">{{wish._id}} {{wish.title}}-{{wish.description}}---{{wish.createdAt | date : "MMMM dd yyyy"}}</p>
-	
+<style>
+	body{
+		background-color: #C390D4;
+	}
+</style>
 
-</div>
