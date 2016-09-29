@@ -26,6 +26,7 @@ app.controller('profileController', ['$scope', '$location', 'userFactory', '$coo
             $scope.selected.splice(idx, 1);
         } else {
             $scope.selected.push(item);
+            item.save
         }
     }
     $scope.getWishByUser();
