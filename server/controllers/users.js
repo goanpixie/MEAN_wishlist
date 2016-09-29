@@ -45,7 +45,7 @@ function UsersController() {
             if (err) {
                 res.json(err)
             } else {
-                User.findOne({ _id: req.body.userid, name: req.body.name}, function(err, user) {
+                User.findOne({ _id: req.body.userid, name: req.body.name }, function(err, user) {
                     if (err) {
                         res.json(err)
                     } else {
@@ -54,15 +54,34 @@ function UsersController() {
                             if (err) {
                                 res.json(err)
                             } else {
-                                res.send()
+                                User.findOne({ name: newWish.tagged }, function(err, tagged_user) {
+                                    console.log('Tagged user detail', tagged_user);
+                                        // var tag_user_wish = Wish({ _id: newWish._id, name: newWish.tagged, title: newWish.title, description: newWish.description})
+                                    console.log("Tagged user data", tagged_user)
+                                    console.log("tatatatatatattatattatatattatatata")
+                                    tagged_user._wish.push(newWish);
+                                    console.log("attatatatattatatatatattatatatatatta" * 80)
+                                    tagged_user.save(function(err, USER) {
+                                        console.log("*********************",USER)
+                                        if (err) {
+                                            res.json(err)
+                                        } else {
+                                            res.send()
+                                        }
+                                    })
+                                })
                             }
                         })
                     }
 
                 })
+
             }
+
         })
     }
+
+
 
 
     this.getWish = function(req, res) {
@@ -78,11 +97,13 @@ function UsersController() {
 
     this.getWishByUser = function(req, res) {
         console.log("I am here")
-        Wish.find({ _user: req.params._user }).populate('_user').exec(function(err, wish) {
+        User.find({ _id: req.params._user }).populate('_wish').exec(function(err, user) {
+            console.log("*******************************", user)
+            console.log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<", user[0]._wish)
             if (err) {
                 res.json(err)
             } else {
-                res.json(wish)
+                res.json(user)
             }
         })
     }
