@@ -1,28 +1,26 @@
-<h2>Welcome, {{newUser.name}} &nbsp;&nbsp;&nbsp;<button ng-click="logout()">Sign Out</button></h2>
-
-
+<h2>Welcome, {{newUser.name}} &nbsp;&nbsp;&nbsp;<button><a href='#/wall'>Home</a></button><button ng-click="logout()">Sign Out</button></h2> 
 <div ng-repeat="wish in wishes">
-<h2>{{wish}}Here's the buckect list for {{wish._wish[0].tagged}}
---->--->{{wish._wish[0].title}}-{{wish._wish[0].description}}--->{{wish.createdAt | date : "MMMM dd yyyy"}} </h2>
+    <h3><u>Here's the buckect list for {{wish.name}}</u></h3>
 </div>
-
 <h3>Pending:</h3>
-<form ng-repeat="wish in wishes" >
 
-<input type="checkbox" ng-if="newUser.name == wish._user[0].name" ng-click="toggle(wish)">
+<form ng-repeat="wish in wishes">
+
+    <input type="checkbox" ng-if="newUser.name == wish.name" ng-click="toggle(wish)">
+    <b>{{wish._wish[0].title}}</b>  {{wish._wish[0].description}} <i>{{wish._wish[0].createdAt | date : "MMMM dd yyyy"}}</i>
+    <br> <b>{{wish._wish[1].title}}</b>  {{wish._wish[1].description}} <i>{{wish._wish[1].createdAt | date : "MMMM dd yyyy"}}</i>
+    <br> <b>{{wish._wish[2].title}}</b>  {{wish._wish[2].description}} <i>{{wish._wish[2].createdAt | date : "MMMM dd yyyy"}}</i>
+    <br>
+
 </form>
-
-
 <h3>Done:</h3>
 <ul>
-	<li ng-repeat = "selection in selected">
-		{{selection.title}}
-	</li>
+    <li ng-repeat="selection in selected">
+        <b>{{selection._wish[0].title}}</b> {{selection._wish[0].description}}  <i>{{selection._wish[0].createdAt | date : "MMMM dd yyyy"}} </i> 
+    </li>
 </ul>
-
 <style>
-	body{
-		background-color: #C390D4;
-	}
+body {
+    background-color: #C390D4;
+}
 </style>
-

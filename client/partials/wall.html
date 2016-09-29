@@ -2,8 +2,8 @@
 <form ng-submit="addWish()">
     <input type="text" ng-model="createWish.title" placeholder="title">
     <input type="text" ng-model="createWish.description" placeholder="description">
-    <select ng-model="createWish.tagged">
-        <option ng-repeat="user in users track by $index">{{user.name}}</option>
+     Tag a Friend:<select ng-model="createWish.tagged">
+       <option ng-repeat="user in users track by $index">{{user.name}}</option>
     </select>
     <input type="submit" value="Add to List">
 </form>
@@ -21,16 +21,16 @@
 </form>
 
 
-<h2>Completed wishes:</h2>
+
 <ul>
     <li ng-repeat="selection in selected">
         {{selection.title}}
     </li>
 </ul>
 
-<h3>List of other users(Click to view profile)</h3>
+<h3><u>List of other users(Click to view profile)</u></h3>
 <div ng-repeat="user in users">
-    <p><a href="#/profile/{{user._id}}">{{user.name}} </a> {{user._id}}</p>
+    <p><a href="#/profile/{{user._id}}">{{user.name}} </a> </p>
 </div>
 
 <style>
